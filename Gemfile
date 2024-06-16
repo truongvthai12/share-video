@@ -67,3 +67,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise"
+gem 'simple_form'
+gem "jquery-rails", "~> 4.3.5"
+gem "bootstrap", "~> 4.5"

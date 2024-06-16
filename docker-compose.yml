@@ -16,9 +16,13 @@ services:
       - .env
     volumes:
       - .:/app
+      - bundle_data:/usr/local/bundle 
     ports:
       - "3000:3000"
     depends_on:
       - database
+    stdin_open: true
+    tty: true
 volumes:
   db_data:
+  bundle_data:

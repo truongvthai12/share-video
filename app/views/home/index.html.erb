@@ -1,0 +1,4 @@
+<% @videos.each do |video| %>
+  <p><%= video.url %></p>
+  <p><%= video.user&.email %></p>
+<% end %> 
