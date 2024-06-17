@@ -17,4 +17,6 @@ Rails.application.routes.draw do
       post :create_video
     end
   end
+
+  mount ActionCable.server => '/cable'
 end
