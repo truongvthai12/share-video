@@ -1,4 +1,7 @@
 <%= simple_form_for @video, url: create_video_users_path do |f| %>
-  <%= f.input :url %>
-  <%= f.button :submit %>
+  <div class="form-group">
+    <%= f.input :url, input_html: {class:'form-control'} %>
+  </div>
+
+  <%= f.button :submit, 'Share video', class: "btn btn-primary px-5" %>
 <% end %>
