@@ -38,6 +38,7 @@ COPY . /app
 # Configure endpoint.
 COPY ./docker/app/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
+RUN chmod a+x bin/render-build.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
