@@ -13,8 +13,16 @@ class Video < ApplicationRecord
     end
     def noti_content video
         user_name = video.user&.name
-        title = VideoInfo.new(video.url)&.title
+        title = video_title(video.url)
        "#{user_name} shared #{title}"
+    end
+
+    def video_title url
+        video = VideoInfo.new(url)
+        video.title
+    rescue StandardError => e
+        puts "Error fetching YouTube title in video model: #{e.message}"
+        return ''
     end
  
 end

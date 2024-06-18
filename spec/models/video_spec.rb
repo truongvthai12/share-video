@@ -14,7 +14,7 @@ RSpec.describe Video, type: :model do
   describe "callbacks" do
     it "broadcasts video to 'video' channel after create" do
       video = build(:video, user: user)
-      expect(ActionCable.server).to receive(:broadcast).with('video', { layout: video.send(:render_video_layout, video), email: user.email })
+      expect(ActionCable.server).to receive(:broadcast).with('video', { layout: video.send(:render_video_layout, video), noti_content: video.send(:noti_content, video) })
       video.save
     end
   end

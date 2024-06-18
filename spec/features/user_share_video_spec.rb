@@ -9,7 +9,7 @@ RSpec.feature "User share video", type: :feature do
 
     fill_in "Url", with: Faker::Internet.url
     click_button "Share video"
-    expect(page).to have_content("Share by #{user.email}")
+    expect(page).to have_content("Shared by #{user.email}")
     expect(current_path).to eq(root_path)
   end
 
