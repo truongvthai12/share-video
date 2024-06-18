@@ -12,23 +12,20 @@ RSpec.describe Video, type: :model do
   end
 
   describe "callbacks" do
-    it "calls add_to_home after create" do
+    it "broadcasts video to 'video' channel after create" do
       video = build(:video, user: user)
-      expect(video).to receive(:add_to_home)
+      expect(ActionCable.server).to receive(:broadcast).with('video', { layout: video.send(:render_video_layout, video), email: user.email })
       video.save
     end
   end
 
-  describe "#add_to_home" do
-    it "broadcasts to the 'video' channel" do
-      video = create(:video, user: user)
-
-      expect(ActionCable.server).to receive(:broadcast).with(
-        'video',
-        {url: helper.youtube_embed(url), email:user.email}
-      )
-
-      video.add_to_home
+  describe "#render_video_layout" do
+    it "renders the 'home/video' partial with video object" do
+      video = build(:video, user: user)
+      rendered_partial = video.send(:render_video_layout, video)
+      # Check if the rendered_partial contains expected content
+      expect(rendered_partial).to include(video.user&.email)
+      expect(rendered_partial).to include("<iframe width=\"490\" height=\"275\"")
     end
   end
 end

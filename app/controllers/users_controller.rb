@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         if @video.save
             redirect_to root_path
         else
-
+            render 'new_video'
         end
     end
 
