@@ -2,6 +2,8 @@
   <div class="mr-3">
     <iframe width="490" height="275" src="<%= youtube_embed(video.url) %>" frameborder="0" allowfullscreen></iframe>
   </div>
-  <p>Share by <%= video.user&.email %>
-  </p>
+  <div class="d-flex flex-column">
+    <h3><%= fetch_youtube_title(video.url) %></h3>
+    <p>Shared by <%= video.user&.email %></p>
+  </div>
 </div>

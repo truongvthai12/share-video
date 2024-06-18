@@ -25,14 +25,15 @@ RUN apt install -y postgresql-client yarn
 
 # Prepare working directory.
 WORKDIR /app
-COPY . /app
+
 ARG BUNDLER_VERSION=2.1.4
+COPY Gemfile Gemfile.lock ./
 
 RUN gem install bundler:${BUNDLER_VERSION}
 
 RUN bundle install
 
-
+COPY . /app
 
 # Configure endpoint.
 COPY ./docker/app/entrypoint.sh /usr/bin/

@@ -78,3 +78,4 @@ gem "devise"
 gem 'simple_form'
 gem "jquery-rails", "~> 4.3.5"
 gem "bootstrap", "~> 4.5"
+gem "video_info"
