@@ -11,7 +11,7 @@ consumer.subscriptions.create("VideoChannel", {
   },
 
   received(data) {
-    console.log('data is', data)
+    $("#list-video").prepend(data.layout)
     // Called when there's incoming data on the websocket for this channel
   }
 });

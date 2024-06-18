@@ -1,13 +1,7 @@
 <div class="container">
+  <div id="list-video">
   <% @videos.each do |video| %>
-    <div class="d-flex flex-row mt-4">
-      <div class="mr-3">
-        <iframe width="490" height="275" src="<%= youtube_embed(video.url) %>" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <p>Share by <%= video.user&.email %>
-      </p>
-    </div>
+      <%= render partial: 'home/video', locals: {video: video} %>
     <% end %>
+  </div>
 </div>
-<script>
-</script>
