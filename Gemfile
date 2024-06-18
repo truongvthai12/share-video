@@ -27,7 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -79,3 +79,6 @@ gem 'simple_form'
 gem "jquery-rails", "~> 4.3.5"
 gem "bootstrap", "~> 4.5"
 gem "video_info"
+
+# Use hiredis to get better performance than the "redis" gem
+gem 'hiredis'
