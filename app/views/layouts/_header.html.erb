@@ -1,37 +1,33 @@
-<ul class="nav justify-content-end p-2 flex-column flex-sm-row" style='border: 1px solid gray'>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to "Home" , root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <% if user_signed_in? %>
-    <li class="nav-item ">
-      <div class="p-3">
-        <p class="mb-0">Welcome <%= current_user.email %></p>
-      </div>
-    </li>
-  <% end %>
-
-  <li class="nav-item ">
-    <div class="p-3">
-      <%= link_to "Home", root_path, class: 'nav-link btn btn-outline-secondary' %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item ">
+            <p class="nav-link mb-0">Welcome <%= current_user.email %>
+            </p>
+          </li>
+          <li class="nav-item ">
+            <div class="">
+              <%= link_to "Share video" , new_video_path, class: 'nav-link' %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="">
+              <%= button_to "Sign out" , destroy_user_session_path, method: :delete, class: 'nav-link border-0' ,
+                style: 'background: none' %>
+            </div>
+          </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign in" , new_user_session_path, class: 'nav-link' %>
+            </li>
+            <% end %>
+      </ul>
     </div>
-  </li>
-
-  <% if user_signed_in? %>
-    <li class="nav-item ">
-      <div class="p-3">
-        <%= link_to "Share video", new_video_path, class: 'nav-link btn btn-outline-secondary' %>
-      </div>
-    </li>
-    <li class="nav-item">
-      <div class="p-3">
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary w-100' %>
-      </div>
-    </li>
-  <% else %>
-    <li class="nav-item">
-      <div class="p-3">
-        <%= link_to "Sign in", new_user_session_path, class: 'nav-link btn btn-outline-secondary' %>
-      </div>
-
-    </li>
-  <% end %>
-</ul>
-
+</nav>

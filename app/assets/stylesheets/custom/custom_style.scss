@@ -34,6 +34,9 @@ abbr[title] {
   min-height: 375px
 }
 
+.field_with_errors span.error {
+  color: red
+}
 @media only screen and (max-width: 575.98px) {
     .youtube-frame {
       min-height: 275px

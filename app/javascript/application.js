@@ -2,3 +2,5 @@
 import "jquery"
 import 'plugins/notify'
 import 'plugins/notify_style'
+import 'bootstrap'
+import '@popperjs/core'
