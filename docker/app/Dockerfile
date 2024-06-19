@@ -38,6 +38,10 @@ RUN bundle install
 COPY . /app
 
 # Configure endpoint.
+
+COPY ./docker/app/entrypoint.sh /usr/bin/
+ENTRYPOINT ["entrypoint.sh"]
+RUN chmod +x /usr/bin/entrypoint.sh
 COPY ./docker/app/command.sh /scripts/
 RUN chmod a+x /scripts/command.sh
 RUN chmod a+x bin/render-build.sh
