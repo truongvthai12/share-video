@@ -31,10 +31,13 @@ class Video < ApplicationRecord
     end
 
     def is_valid_url?
-        VideoInfo.new(url)
-        true
+        return false if (url == '' || url.nil?)
+        video = VideoInfo.new(url)
+        return true if video.provider == 'YouTube'
+        false
     rescue StandardError => e
         puts "Error fetching YouTube title in method is_valid_url?: #{e.message}"
+        puts "url is #{url}"
         return false
     end
  
