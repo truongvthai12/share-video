@@ -1,11 +1,16 @@
 module VideoHelper
     def youtube_embed(youtube_url)
-      if youtube_url[/youtu\.be\/([^\?]*)/]
-        "https://www.youtube.com/embed/#{$1}"
-      elsif youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-        "https://www.youtube.com/embed/#{$5}"
+      begin
+        video = VideoInfo.new(youtube_url)
+        url = "https:#{video.embed_url}"
+        return url
+      rescue StandardError => e
+        puts "Error fetching YouTube title: #{e.message}"
+        return nil
       end
     end
+
+    
 
     def fetch_youtube_title(url)
       begin
