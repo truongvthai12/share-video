@@ -3,6 +3,7 @@ FROM ruby:3.1-slim
 # Register Yarn package source.
 RUN apt-get update && \
     apt-get install build-essential -y --no-install-recommends \
+    nano \
     vim \
     git \
     gnupg2 \
@@ -13,7 +14,6 @@ RUN apt-get update && \
     ruby-dev \
     zlib1g-dev \
     liblzma-dev \
-    libmariadb-dev \
     libpq-dev
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -29,18 +29,17 @@ WORKDIR /app
 ARG BUNDLER_VERSION=2.1.4
 COPY Gemfile Gemfile.lock ./
 
+ENV BUNDLER_PATH=/bundle BUNDLE_BIN=/bundle/bin GEM_HOME=/bundle
+
+ENV PATH="${BUNDLE_BIN}:${PATH}"
+
 RUN gem install bundler:${BUNDLER_VERSION}
 
-RUN bundle install
+RUN bundle install --path=${BUNDLER_PATH}
 
 COPY . /app
 
 # Configure endpoint.
-COPY ./docker/app/entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
+COPY ./docker/app/command.sh /scripts/
+RUN chmod a+x /scripts/command.sh
 RUN chmod a+x bin/render-build.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
-
-# Start app server.
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
