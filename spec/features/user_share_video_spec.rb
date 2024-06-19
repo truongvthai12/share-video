@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.feature "User share video", type: :feature do
 
   let(:user) { create(:user) }
+  let(:valid_url) {'https://youtu.be/764pz8TsqRU?si=vwIxLCNSVvzw6ZLB'}
   scenario "Logged in user share video with valid url successfully" do
     sign_in user
     visit new_video_path
-
-    fill_in "Url", with: Faker::Internet.url
+    fill_in "Url", with: valid_url
     click_button "Share video"
     expect(page).to have_content("Shared by #{user.email}")
     expect(current_path).to eq(root_path)

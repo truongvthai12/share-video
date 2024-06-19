@@ -3,3 +3,39 @@ abbr[title] {
   cursor: inherit !important;
   text-decoration: none !important;
 }
+
+.notifyjs-foo-base {
+  opacity: 0.85;
+  color: #fff;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.notifyjs-foo-base .title {
+
+  float: left;
+  line-height: 1rem;
+  margin: 10px;
+  text-align: right;
+}
+
+.notifyjs-foo-base .buttons {
+  width: 40px;
+  float: right;
+  padding: 5px;
+  margin: 2px;
+  .close-btn {
+    float: right;
+  }
+}
+
+.youtube-frame {
+  width: 100%;
+  min-height: 375px
+}
+
+@media only screen and (max-width: 575.98px) {
+    .youtube-frame {
+      min-height: 275px
+    }
+}

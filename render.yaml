@@ -5,6 +5,11 @@ databases:
     plan: free
 
 services:
+  - type: redis
+    name: cache
+    ipAllowList: [] # only allow internal connections
+    plan: free # optional (defaults to starter)
+    maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
   - type: web
     name: share_video_server
     runtime: ruby
@@ -21,3 +26,8 @@ services:
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
+      - key: REDIS_URL # this must match the name of the environment variable used in production.rb
+        fromService:
+          type: redis
+          name: cache
+          property: connectionString

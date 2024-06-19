@@ -3,8 +3,16 @@ class Video < ApplicationRecord
     validates :url, presence: true
     after_create_commit :add_to_home
 
+    validate :check_valid_url
+
     def add_to_home
         ActionCable.server.broadcast 'video', {layout: render_video_layout(self), noti_content: noti_content(self)}
+    end
+
+    def check_valid_url
+        unless is_valid_url?
+            errors.add(:url, "not a valid Youtube url")
+        end
     end
 
     private
@@ -20,9 +28,17 @@ class Video < ApplicationRecord
     def video_title url
         video = VideoInfo.new(url)
         video.title
+    end
+
+    def is_valid_url?
+        return false if (url == '' || url.nil?)
+        video = VideoInfo.new(url)
+        return true if video.provider == 'YouTube'
+        false
     rescue StandardError => e
-        puts "Error fetching YouTube title in video model: #{e.message}"
-        return ''
+        puts "Error fetching YouTube title in method is_valid_url?: #{e.message}"
+        puts "url is #{url}"
+        return false
     end
  
 end

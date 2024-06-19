@@ -11,9 +11,13 @@ consumer.subscriptions.create("VideoChannel", {
   },
 
   received(data) {
-    console.log('data is', data)
     $("#list-video").prepend(data.layout)
-    $.notify(data.noti_content, { className: 'info'});
+    $.notify({
+      title: data.noti_content,
+    }, {
+      style: 'foo',
+      autoHide: false
+    });
     // Called when there's incoming data on the websocket for this channel
   }
 });
