@@ -16,6 +16,7 @@ consumer.subscriptions.create("VideoChannel", {
       title: data.noti_content,
     }, {
       style: 'foo',
+      autoHide: false
     });
     // Called when there's incoming data on the websocket for this channel
   }

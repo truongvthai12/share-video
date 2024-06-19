@@ -28,3 +28,14 @@ abbr[title] {
     float: right;
   }
 }
+
+.youtube-frame {
+  width: 100%;
+  min-height: 375px
+}
+
+@media only screen and (max-width: 575.98px) {
+    .youtube-frame {
+      min-height: 275px
+    }
+}

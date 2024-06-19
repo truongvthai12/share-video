@@ -1,8 +1,12 @@
-<div class="d-flex flex-row mt-4">
-  <div class="mr-3">
-    <iframe width="490" height="275" src="<%= youtube_embed(video.url) %>" frameborder="0" allowfullscreen></iframe>
+<div class="row mt-3">
+  <div class="col-sm-8">
+    <div >
+
+
+    <iframe class="youtube-frame" src="<%= youtube_embed(video.url) %>" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
-  <div class="d-flex flex-column">
+  <div class="col-sm-4">
     <h3><%= fetch_youtube_title(video.url) %></h3>
     <p>Shared by <%= video.user&.email %></p>
   </div>

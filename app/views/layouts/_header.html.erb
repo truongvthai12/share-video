@@ -1,21 +1,37 @@
-<ul class="nav justify-content-end p-2" style='border: 1px solid gray'>
-    <% if user_signed_in? %> 
-   
-    <li class="nav-item ">
-    <div class="d-flex flex-row">
-        <p class="mb-0 mr-3">Welcome <%= current_user.email %></p>
-        <%= link_to "Share video", new_video_path, class: 'nav-link btn btn-outline-secondary mr-3' %> 
-    </div>
+<ul class="nav justify-content-end p-2 flex-column flex-sm-row" style='border: 1px solid gray'>
 
-       
+  <% if user_signed_in? %>
+    <li class="nav-item ">
+      <div class="p-3">
+        <p class="mb-0">Welcome <%= current_user.email %></p>
+      </div>
+    </li>
+  <% end %>
+
+  <li class="nav-item ">
+    <div class="p-3">
+      <%= link_to "Home", root_path, class: 'nav-link btn btn-outline-secondary' %>
+    </div>
+  </li>
+
+  <% if user_signed_in? %>
+    <li class="nav-item ">
+      <div class="p-3">
+        <%= link_to "Share video", new_video_path, class: 'nav-link btn btn-outline-secondary' %>
+      </div>
     </li>
     <li class="nav-item">
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary' %> 
+      <div class="p-3">
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-secondary w-100' %>
+      </div>
     </li>
-    <% else %>
+  <% else %>
     <li class="nav-item">
-    <%= link_to "Sign in", new_user_session_path, class: 'nav-link btn btn-outline-secondary mr-3' %> 
+      <div class="p-3">
+        <%= link_to "Sign in", new_user_session_path, class: 'nav-link btn btn-outline-secondary' %>
+      </div>
+
     </li>
-    <% end %>
+  <% end %>
 </ul>
 

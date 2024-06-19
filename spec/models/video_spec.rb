@@ -25,7 +25,7 @@ RSpec.describe Video, type: :model do
       rendered_partial = video.send(:render_video_layout, video)
       # Check if the rendered_partial contains expected content
       expect(rendered_partial).to include(video.user&.email)
-      expect(rendered_partial).to include("<iframe width=\"490\" height=\"275\"")
+      expect(rendered_partial).to include("<div class=\"row mt-3\">\n  <div class=\"col-sm-8\">")
     end
   end
 end
