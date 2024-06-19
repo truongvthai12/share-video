@@ -5,7 +5,7 @@ module VideoHelper
         url = "https:#{video.embed_url}"
         return url
       rescue StandardError => e
-        puts "Error fetching YouTube title: #{e.message}"
+        puts "Error fetching youtube_embed: #{e.message}"
         return nil
       end
     end
