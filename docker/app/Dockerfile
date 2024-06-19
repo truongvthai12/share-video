@@ -29,13 +29,11 @@ WORKDIR /app
 ARG BUNDLER_VERSION=2.1.4
 COPY Gemfile Gemfile.lock ./
 
-ENV BUNDLER_PATH=/bundle BUNDLE_BIN=/bundle/bin GEM_HOME=/bundle
 
-ENV PATH="${BUNDLE_BIN}:${PATH}"
 
 RUN gem install bundler:${BUNDLER_VERSION}
 
-RUN bundle install --path=${BUNDLER_PATH}
+RUN bundle install
 
 COPY . /app
 
